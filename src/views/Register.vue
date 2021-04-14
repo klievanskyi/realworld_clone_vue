@@ -32,7 +32,10 @@
                 placeholder="Password"
               />
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right">
+            <button
+              class="btn btn-lg btn-primary pull-xs-right"
+              :disabled="isSubmitting"
+            >
               Sign Up
             </button>
           </form>
@@ -45,9 +48,14 @@
 <script>
 export default {
   name: 'McRegister',
+  computed: {
+    isSubmitting() {
+      return this.$store.state.auth.isSubmitting;
+    }
+  },
   methods: {
     onSubmit() {
-      console.log('Form submitted');
+      this.$store.dispatch('register');
     }
   }
 };
